@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97B267E362A3F7FD06FC9577 /* libPods-ChickenApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 019953114E33EB0FA8E2858E /* libPods-ChickenApp.a */; };
 		ACDD078619F234F900D6B499 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD078519F234F900D6B499 /* main.m */; };
 		ACDD078919F234F900D6B499 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD078819F234F900D6B499 /* AppDelegate.m */; };
 		ACDD078C19F234F900D6B499 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD078B19F234F900D6B499 /* ViewController.m */; };
@@ -14,6 +15,8 @@
 		ACDD079119F234F900D6B499 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACDD079019F234F900D6B499 /* Images.xcassets */; };
 		ACDD079419F234F900D6B499 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACDD079219F234F900D6B499 /* LaunchScreen.xib */; };
 		ACDD07A019F234F900D6B499 /* ChickenAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD079F19F234F900D6B499 /* ChickenAppTests.m */; };
+		ACDD07B719F27B5800D6B499 /* TransactionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD07B619F27B5800D6B499 /* TransactionsTableViewController.m */; };
+		ACDD07BA19F2EDF400D6B499 /* TransactionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD07B919F2EDF400D6B499 /* TransactionDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		019953114E33EB0FA8E2858E /* libPods-ChickenApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChickenApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		624A86491AF7C637EE41C5A1 /* Pods-ChickenApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChickenApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChickenApp/Pods-ChickenApp.release.xcconfig"; sourceTree = "<group>"; };
 		ACDD078019F234F900D6B499 /* ChickenApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChickenApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACDD078419F234F900D6B499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACDD078519F234F900D6B499 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +45,11 @@
 		ACDD079919F234F900D6B499 /* ChickenAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChickenAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACDD079E19F234F900D6B499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACDD079F19F234F900D6B499 /* ChickenAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChickenAppTests.m; sourceTree = "<group>"; };
+		ACDD07B519F27B5800D6B499 /* TransactionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionsTableViewController.h; sourceTree = "<group>"; };
+		ACDD07B619F27B5800D6B499 /* TransactionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionsTableViewController.m; sourceTree = "<group>"; };
+		ACDD07B819F2EDF400D6B499 /* TransactionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionDetailViewController.h; sourceTree = "<group>"; };
+		ACDD07B919F2EDF400D6B499 /* TransactionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionDetailViewController.m; sourceTree = "<group>"; };
+		EEF57181964D1AFDD9347851 /* Pods-ChickenApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChickenApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChickenApp/Pods-ChickenApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97B267E362A3F7FD06FC9577 /* libPods-ChickenApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +71,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3DB7EA221BD60CF39EF2F6AB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EEF57181964D1AFDD9347851 /* Pods-ChickenApp.debug.xcconfig */,
+				624A86491AF7C637EE41C5A1 /* Pods-ChickenApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		ACDD077719F234F900D6B499 = {
 			isa = PBXGroup;
 			children = (
 				ACDD078219F234F900D6B499 /* ChickenApp */,
 				ACDD079C19F234F900D6B499 /* ChickenAppTests */,
 				ACDD078119F234F900D6B499 /* Products */,
+				3DB7EA221BD60CF39EF2F6AB /* Pods */,
+				D2D9954E4214653F2D00BBEF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +111,10 @@
 				ACDD079019F234F900D6B499 /* Images.xcassets */,
 				ACDD079219F234F900D6B499 /* LaunchScreen.xib */,
 				ACDD078319F234F900D6B499 /* Supporting Files */,
+				ACDD07B519F27B5800D6B499 /* TransactionsTableViewController.h */,
+				ACDD07B619F27B5800D6B499 /* TransactionsTableViewController.m */,
+				ACDD07B819F2EDF400D6B499 /* TransactionDetailViewController.h */,
+				ACDD07B919F2EDF400D6B499 /* TransactionDetailViewController.m */,
 			);
 			path = ChickenApp;
 			sourceTree = "<group>";
@@ -119,6 +145,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D2D9954E4214653F2D00BBEF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				019953114E33EB0FA8E2858E /* libPods-ChickenApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +160,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ACDD07A319F234F900D6B499 /* Build configuration list for PBXNativeTarget "ChickenApp" */;
 			buildPhases = (
+				6B1F8F53E0F52F2430BCC98F /* Check Pods Manifest.lock */,
 				ACDD077C19F234F900D6B499 /* Sources */,
 				ACDD077D19F234F900D6B499 /* Frameworks */,
 				ACDD077E19F234F900D6B499 /* Resources */,
+				C2A8895097BF92EA6E97CCBA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,11 +250,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6B1F8F53E0F52F2430BCC98F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C2A8895097BF92EA6E97CCBA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChickenApp/Pods-ChickenApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		ACDD077C19F234F900D6B499 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACDD07B719F27B5800D6B499 /* TransactionsTableViewController.m in Sources */,
+				ACDD07BA19F2EDF400D6B499 /* TransactionDetailViewController.m in Sources */,
 				ACDD078C19F234F900D6B499 /* ViewController.m in Sources */,
 				ACDD078919F234F900D6B499 /* AppDelegate.m in Sources */,
 				ACDD078619F234F900D6B499 /* main.m in Sources */,
@@ -265,6 +336,7 @@
 /* Begin XCBuildConfiguration section */
 		ACDD07A119F234F900D6B499 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEF57181964D1AFDD9347851 /* Pods-ChickenApp.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -306,6 +378,7 @@
 		};
 		ACDD07A219F234F900D6B499 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 624A86491AF7C637EE41C5A1 /* Pods-ChickenApp.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -341,6 +414,7 @@
 		};
 		ACDD07A419F234F900D6B499 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEF57181964D1AFDD9347851 /* Pods-ChickenApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ChickenApp/Info.plist;
@@ -351,6 +425,7 @@
 		};
 		ACDD07A519F234F900D6B499 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 624A86491AF7C637EE41C5A1 /* Pods-ChickenApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ChickenApp/Info.plist;
@@ -361,6 +436,7 @@
 		};
 		ACDD07A719F234F900D6B499 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEF57181964D1AFDD9347851 /* Pods-ChickenApp.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -380,6 +456,7 @@
 		};
 		ACDD07A819F234F900D6B499 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 624A86491AF7C637EE41C5A1 /* Pods-ChickenApp.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -412,6 +489,7 @@
 				ACDD07A519F234F900D6B499 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ACDD07A619F234F900D6B499 /* Build configuration list for PBXNativeTarget "ChickenAppTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +498,7 @@
 				ACDD07A819F234F900D6B499 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

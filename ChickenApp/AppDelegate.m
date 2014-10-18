@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [Venmo startWithAppId:@"2037" secret:@"YrvLZXeubrQrCK5JcLVFNkm3mHT6GeFN" name:@"Chicken"];
+    
+    [[Venmo sharedInstance] setDefaultTransactionMethod:VENTransactionMethodAPI];
+    
+    ViewController *rootViewController = [[ViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+    
+    self.window.rootViewController = nav;
+    
     // Override point for customization after application launch.
     return YES;
 }
@@ -40,6 +51,14 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if ([[Venmo sharedInstance] handleOpenURL:url]) {
+        return YES;
+    }
+    // You can add your app-specific url handling code here if needed
+    return NO;
 }
 
 @end
