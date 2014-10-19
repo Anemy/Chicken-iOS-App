@@ -158,6 +158,11 @@ int currentCellFill = 0;
     [self.navigationController pushViewController:detailTransaction animated:YES];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 
 @end
 
