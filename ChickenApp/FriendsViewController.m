@@ -94,13 +94,15 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    [cell.imageView sd_setImageWithURL:[[[self friends] objectAtIndex:indexPath.row] objectForKey:@"profile_picture_url"]];
+    NSURL *url = [NSURL URLWithString:[[self.friends objectAtIndex:indexPath.row] objectForKey:@"profile_picture_url"]];
+    [cell.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Chicken.png"]];
     cell.textLabel.text = [[self.friends objectAtIndex:indexPath.row] objectForKey:@"display_name"];
     
     return cell;
 }
 
 - (void) tableView:(UITableView *) tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     StartViewController *startController = [[StartViewController alloc] initWithFriend:[self.friends objectAtIndex:indexPath.row]];
     [self.navigationController pushViewController:startController animated:YES];
 }
