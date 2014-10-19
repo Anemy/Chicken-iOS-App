@@ -117,6 +117,7 @@
     void(^handlerTwo)(VENTransaction *, BOOL, NSError *) = ^(VENTransaction *transaction, BOOL success, NSError *error) {
         if (error) {
             NSLog(@"Pay %@ failure.", userRequested);
+            NSLog(@"%@",[error localizedDescription]);
         }
         else {
             NSLog(@"Pay %@ success!", userRequested);

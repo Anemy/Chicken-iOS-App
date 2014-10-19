@@ -62,32 +62,47 @@ int currentCellFill = 0;
         //self.pastTrades = [responseObject objectForKey:@"data"];
         NSLog(@"Size of transaction history before filter: %lu", (unsigned long)[self.pastTrades count]);
         
+        NSMutableArray *disallowedUsers = [NSMutableArray array];
+        
         for(NSDictionary *transaction in [responseObject objectForKey:@"data"]) {
             //check if data is there
             if([[transaction valueForKey:@"target"] valueForKey:@"user"] != nil) {
                 //and also it's a pending request (can be action:pay/charge)
                 //and also the word ChickenBet is in the note
-                NSLog(@"Is %@ == pending?", [transaction valueForKey:@"status"]);
-                NSLog(@"Is %@ == ChickenBet?", [transaction valueForKey:@"note"]);
+                //NSLog(@"Is %@ == pending?", [transaction valueForKey:@"status"]);
+                //NSLog(@"Is %@ == Chicken?", [transaction valueForKey:@"note"]);
+                
+                //increase the amount of cells to be displayed if allowed
+                int allowAdd = 1;
+                
+                //see if target is self or other
+                NSString *username = [[[[Venmo sharedInstance] session] user] username];
+                NSString *othername = [[[transaction valueForKey:@"target"] valueForKey:@"user"] valueForKey:@"username"];
+                NSString *targetUser;
+                
+                if([username isEqualToString:othername]) {//you are targ
+                    targetUser = [[transaction valueForKey:@"actor"] valueForKey:@"username"];
+                }
+                else { //targ other
+                    targetUser = [[[transaction valueForKey:@"target"] valueForKey:@"user"] valueForKey:@"username"];
+                }
+                
+                for(int i = 0; i < disallowedUsers.count; i++) {
+                    if([[disallowedUsers objectAtIndex:i] isEqualToString:targetUser]) {
+                        allowAdd = 0;
+                        break;
+                    }
+                }
+                if(allowAdd == 0)
+                    continue;
+                
                 if([[transaction valueForKey:@"status"] isEqualToString:@"pending"]
                    && [[transaction valueForKey:@"note"] isEqualToString:@"Chicken"]){
-                    //increase the amount of cells to be displayed
+                    //increase the amount of cells to be displayed if allowed
                     [self.pastTrades addObject:transaction];
                 }
                 
-                //PAST TRADES SETTLED
-                else if([[transaction valueForKey:@"status"] isEqualToString:@"pending"]
-                          && [[transaction valueForKey:@"note"] isEqualToString:@"Chicken"]){
-                    //increase the amount of cells to be displayed
-                    [self.pastTrades addObject:transaction];
-                }
-                
-                //PAST TRADES KEPT
-                else if([[transaction valueForKey:@"status"] isEqualToString:@"pending"]
-                          && [[transaction valueForKey:@"note"] isEqualToString:@"Chicken"]){
-                    //increase the amount of cells to be displayed
-                    [self.pastTrades addObject:transaction];
-                }
+                [disallowedUsers addObject:targetUser];
             }
         }
         
@@ -164,7 +179,7 @@ int currentCellFill = 0;
         cell.textLabel.text = [NSString stringWithFormat:@"%@ is charging you $%@",
                                actorName,
                                [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"amount"]];
-        NSLog(@"%@", [self.pastTrades objectAtIndex:indexPath.row]);
+        //NSLog(@"%@", [self.pastTrades objectAtIndex:indexPath.row]);
         cell.detailTextLabel.text = [NSString stringWithFormat:@"Double up, settle, or keep!"];
     }
     

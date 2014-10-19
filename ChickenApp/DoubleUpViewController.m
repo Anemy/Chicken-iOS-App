@@ -161,7 +161,7 @@
 - (void) settle {
     //send them half the money they sent you. We're trying to break even here!
     NSString *userRequested = [self.friend valueForKey:@"id"];
-    NSString *theNote = @"Settled";
+    NSString *theNote = @"Settle";
     float amountToPay = [self.pastAmount floatValue] * 100.0;
     
     void(^handlerTwo)(VENTransaction *, BOOL, NSError *) = ^(VENTransaction *transaction, BOOL success, NSError *error) {
