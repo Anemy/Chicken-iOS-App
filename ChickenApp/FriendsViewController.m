@@ -13,9 +13,12 @@
 #import "UIColor+FlatUI.h"
 #import "ChickenAPIClient.h"
 #import <Venmo-iOS-SDK/Venmo.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "StartViewController.h"
 
 @interface FriendsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *friends;
 @end
 
 @implementation FriendsViewController
@@ -23,7 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Friends";
+    self.title = @"Choose a friend";
+    
+    self.friends = [NSArray array];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     self.tableView.dataSource = self;
@@ -50,11 +55,12 @@
     NSString *url = [NSString stringWithFormat:@"users/%@/friends", [[[[Venmo sharedInstance] session] user] externalId]];
     NSDictionary *parameters = @{@"access_token": [[Venmo sharedInstance] session].accessToken};
     [[ChickenAPIClient sharedClient] GET:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"FRIENDS %@", responseObject);
+        self.friends = [responseObject objectForKey:@"data"];
+        NSLog(@"FRIENDS %@", self.friends);
+        [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error: %@", error);
     }];
-    
     
 }
 
@@ -76,12 +82,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    //return [self.pastTrades count];
-    return 4;
+    return [self.friends count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"here\n");
     static NSString *CellIdentifier = @"cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -90,9 +94,15 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = @"test";
+    [cell.imageView sd_setImageWithURL:[[[self friends] objectAtIndex:indexPath.row] objectForKey:@"profile_picture_url"]];
+    cell.textLabel.text = [[self.friends objectAtIndex:indexPath.row] objectForKey:@"display_name"];
     
     return cell;
+}
+
+- (void) tableView:(UITableView *) tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    StartViewController *startController = [[StartViewController alloc] initWithFriend:[self.friends objectAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:startController animated:YES];
 }
 
 @end
