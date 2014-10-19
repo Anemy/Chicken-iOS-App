@@ -71,7 +71,7 @@ int currentCellFill = 0;
 {
     NSDictionary *parameters = @{@"access_token": [[Venmo sharedInstance] session].accessToken};
     [[ChickenAPIClient sharedClient] GET:@"payments" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        //self.pastTrades = [responseObject objectForKey:@"data"];
+        [self.pastTrades removeAllObjects];
         NSLog(@"Size of transaction history before filter: %lu", (unsigned long)[self.pastTrades count]);
         
         NSMutableArray *disallowedUsers = [NSMutableArray array];
