@@ -14,6 +14,7 @@
 #import "UIFont+FlatUI.h"
 #import "UINavigationBar+FlatUI.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "SVPullToRefresh.h"
 
 @interface TransactionsTableViewController ()
 @property (nonatomic, strong) UITableView *tableView;
@@ -54,9 +55,20 @@ int currentCellFill = 0;
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-     [self.view addSubview:self.tableView];
+    
+    __weak TransactionsTableViewController *weakSelf = self;
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf refreshData];
+        
+    }];
+    
+    [self.view addSubview:self.tableView];
     
     
+}
+
+- (void)refreshData
+{
     NSDictionary *parameters = @{@"access_token": [[Venmo sharedInstance] session].accessToken};
     [[ChickenAPIClient sharedClient] GET:@"payments" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         //self.pastTrades = [responseObject objectForKey:@"data"];
@@ -121,6 +133,7 @@ int currentCellFill = 0;
         }
         
         [self.tableView reloadData];
+        [self.tableView.pullToRefreshView stopAnimating];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"request failed with error: %@", error);
     }];
@@ -130,6 +143,7 @@ int currentCellFill = 0;
 - (void)viewWillAppear:(BOOL)animated
 {
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    [self.tableView triggerPullToRefresh];
 }
 
 - (void)didReceiveMemoryWarning {

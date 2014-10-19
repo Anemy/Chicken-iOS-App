@@ -10,6 +10,7 @@ pod 'Venmo-iOS-SDK', '~>1.3'
 pod 'SDWebImage', '~>3.6'
 pod "AFNetworking", "~> 2.0"
 pod 'FlatUIKit'
+pod 'SVPullToRefresh'
 
 end
 
