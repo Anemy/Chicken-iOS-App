@@ -11,6 +11,7 @@
 		8928CB0E19F343FF00244114 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8928CB0D19F343FF00244114 /* FriendsViewController.m */; };
 		8928CB1119F3457100244114 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8928CB0F19F3457100244114 /* Main.storyboard */; };
 		8928CB1419F3627400244114 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8928CB1319F3627400244114 /* StartViewController.m */; };
+		8928CB1719F378F600244114 /* DoubleUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8928CB1619F378F600244114 /* DoubleUpViewController.m */; };
 		97B267E362A3F7FD06FC9577 /* libPods-ChickenApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 019953114E33EB0FA8E2858E /* libPods-ChickenApp.a */; };
 		ACDD078619F234F900D6B499 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD078519F234F900D6B499 /* main.m */; };
 		ACDD078919F234F900D6B499 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD078819F234F900D6B499 /* AppDelegate.m */; };
@@ -44,6 +45,8 @@
 		8928CB1019F3457100244114 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8928CB1219F3627400244114 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		8928CB1319F3627400244114 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
+		8928CB1519F378F600244114 /* DoubleUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleUpViewController.h; sourceTree = "<group>"; };
+		8928CB1619F378F600244114 /* DoubleUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleUpViewController.m; sourceTree = "<group>"; };
 		ACDD078019F234F900D6B499 /* ChickenApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChickenApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACDD078419F234F900D6B499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACDD078519F234F900D6B499 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				ACDD07B619F27B5800D6B499 /* TransactionsTableViewController.m */,
 				ACDD07B819F2EDF400D6B499 /* TransactionDetailViewController.h */,
 				ACDD07B919F2EDF400D6B499 /* TransactionDetailViewController.m */,
+				8928CB1519F378F600244114 /* DoubleUpViewController.h */,
+				8928CB1619F378F600244114 /* DoubleUpViewController.m */,
 				8928CB0919F32F0400244114 /* ChickenAPIClient.h */,
 				8928CB0A19F32F0400244114 /* ChickenAPIClient.m */,
 			);
@@ -325,6 +330,7 @@
 				8928CB0E19F343FF00244114 /* FriendsViewController.m in Sources */,
 				ACDD078C19F234F900D6B499 /* ViewController.m in Sources */,
 				ACDD078919F234F900D6B499 /* AppDelegate.m in Sources */,
+				8928CB1719F378F600244114 /* DoubleUpViewController.m in Sources */,
 				8928CB1419F3627400244114 /* StartViewController.m in Sources */,
 				ACDD078619F234F900D6B499 /* main.m in Sources */,
 				8928CB0B19F32F0400244114 /* ChickenAPIClient.m in Sources */,

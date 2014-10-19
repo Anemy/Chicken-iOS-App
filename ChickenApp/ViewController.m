@@ -63,8 +63,6 @@
     newButton.frame = CGRectMake(newButton.frame.origin.x, newButton.frame.origin.y + 30.0f, newButton.frame.size.width, newButton.frame.size.height);
     [self.view addSubview:newButton];
     
-
-    
     [[Venmo sharedInstance] setDefaultTransactionMethod:VENTransactionMethodAPI];
     
     NSLog(@"In view loading.");

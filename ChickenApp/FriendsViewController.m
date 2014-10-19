@@ -56,7 +56,7 @@
     NSDictionary *parameters = @{@"access_token": [[Venmo sharedInstance] session].accessToken};
     [[ChickenAPIClient sharedClient] GET:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         self.friends = [responseObject objectForKey:@"data"];
-        NSLog(@"FRIENDS %@", self.friends);
+        //NSLog(@"FRIENDS %@", self.friends);
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error: %@", error);

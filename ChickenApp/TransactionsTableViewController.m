@@ -8,10 +8,11 @@
 
 #import "TransactionsTableViewController.h"
 #import "ChickenAPIClient.h"
+#import "DoubleUpViewController.h"
 
 @interface TransactionsTableViewController ()
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSArray *pastTrades;
+@property (nonatomic, strong) NSMutableArray *pastTrades;
 
 @end
 
@@ -26,7 +27,7 @@ int currentCellFill = 0;
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.pastTrades = [NSArray array];
+    self.pastTrades = [NSMutableArray array];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.dataSource = self;
@@ -47,9 +48,24 @@ int currentCellFill = 0;
     
     NSDictionary *parameters = @{@"access_token": [[Venmo sharedInstance] session].accessToken};
     [[ChickenAPIClient sharedClient] GET:@"payments" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        self.pastTrades = [responseObject objectForKey:@"data"];
+        //self.pastTrades = [responseObject objectForKey:@"data"];
         NSLog(@"Size of transaction history before filter: %lu", (unsigned long)[self.pastTrades count]);
-        currentCellFill = 0;
+        
+        for(NSDictionary *transaction in [responseObject objectForKey:@"data"]) {
+            //check if data is there
+            if([[transaction valueForKey:@"target"] valueForKey:@"user"] != nil) {
+                //and also it's a pending request (can be action:pay/charge)
+                //and also the word ChickenBet is in the note
+                NSLog(@"Is %@ == pending?", [transaction valueForKey:@"status"]);
+                NSLog(@"Is %@ == ChickenBet?", [transaction valueForKey:@"note"]);
+                if([[transaction valueForKey:@"status"] isEqualToString:@"pending"]
+                   && [[transaction valueForKey:@"note"] isEqualToString:@"Chicken"]){
+                    //increase the amount of cells to be displayed
+                    [self.pastTrades addObject:transaction];
+                }
+            }
+        }
+        
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"request failed with error: %@", error);
@@ -68,27 +84,8 @@ int currentCellFill = 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger cellCount = 0;
     
-    for(int i = 0; i < [self.pastTrades count]; i++) {
-        //check if data is there
-        if([[[self.pastTrades objectAtIndex:i] valueForKey:@"target"] valueForKey:@"user"] != nil) {
-            //and also it's a pending request (can be action:pay/charge)
-            //and also the word ChickenBet is in the note
-            NSLog(@"Is %@ == pending?", [[self.pastTrades objectAtIndex:i] valueForKey:@"status"]);
-            NSLog(@"Is %@ == ChickenBet?", [[self.pastTrades objectAtIndex:i] valueForKey:@"note"]);
-            if([[[self.pastTrades objectAtIndex:i] valueForKey:@"status"] isEqualToString:@"pending"]
-               && [[[self.pastTrades objectAtIndex:i] valueForKey:@"note"] isEqualToString:@"Chicken"]){
-                //increase the amount of cells to be displayed
-                NSLog(@"Increase size of table");
-                cellCount++;
-            }
-        }
-    }
-    
-    NSLog(@"Cell counts: %ld",(long)cellCount);
-    
-    return cellCount;//[self.pastTrades count];
+    return [self.pastTrades count];
 }
 
 
@@ -101,61 +98,61 @@ int currentCellFill = 0;
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+        
+    NSString *actorName = [[[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"actor"] valueForKey:@"display_name"];
     
-    //check if data is there
-    for(int i = currentCellFill; i < [self.pastTrades count]; i++) {
-        currentCellFill++;
-        //check if a user is defined as target
-        //and also it's a pending request (can be action:pay/charge)
-        //and also the word ChickenBet is in the note
-        //NSLog(@"Is %@ == pending?", [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"status"]);
-        if([[[self.pastTrades objectAtIndex:i] valueForKey:@"target"] valueForKey:@"user"] != nil
-           && [[[self.pastTrades objectAtIndex:i] valueForKey:@"status"] isEqualToString:@"pending"]
-           && [[[self.pastTrades objectAtIndex:i] valueForKey:@"note"] isEqualToString:@"Chicken"]){
-            NSLog(@"Adding data to cell.");
-            
-            NSString *actorName = [[[self.pastTrades objectAtIndex:i] valueForKey:@"actor"] valueForKey:@"display_name"];
-            
-            
-            NSString *targetName = [[[[self.pastTrades objectAtIndex:i] valueForKey:@"target"] valueForKey:@"user"] valueForKey:@"display_name"];
-            
-            //need to check the type of this, might be error
-            NSString *amount = [[self.pastTrades objectAtIndex:i] valueForKey:@"amount"];
-            
-            NSLog(@"%@ is charging %@ an amount of %@ with action %@",
-                  actorName,
-                  targetName,
-                  amount,
-                  [[self.pastTrades objectAtIndex:i] valueForKey:@"action"]
-                  );
-            
-            //type 1 action you are charging someone
-            if([[[[[Venmo sharedInstance] session] user] displayName] isEqualToString:actorName]){
-                cell.textLabel.text = [NSString stringWithFormat:@"%@",targetName];
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"Owes you $%@", [[self.pastTrades objectAtIndex:i] valueForKey:@"amount"]];
-            }
-            
-            //type 2 you are being charged
-            else {
-                cell.textLabel.text = [NSString stringWithFormat:@"%@ is charging you $%@",
-                                       actorName,
-                                       [[self.pastTrades objectAtIndex:i] valueForKey:@"amount"]];
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"Play Double   |  Settle  |   Keep"];
-            }
-            
-            //place holding filling data on cell
-           // NSObject *targetUser = [[[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"target"] valueForKey:@"user"];
-            
-            break;
-        }
+    
+    NSString *targetName = [[[[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"target"] valueForKey:@"user"] valueForKey:@"display_name"];
+    
+    //need to check the type of this, might be error
+    NSString *amount = [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"amount"];
+    
+    NSLog(@"%@ is charging %@ an amount of %@ with action %@",
+          actorName,
+          targetName,
+          amount,
+          [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"action"]
+          );
+    
+    //type 1 action you are charging someone
+    if([[[[[Venmo sharedInstance] session] user] displayName] isEqualToString:actorName]){
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",targetName];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Owes you $%@", [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"amount"]];
+    }
+    
+    //type 2 you are being charged
+    else {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ is charging you $%@",
+                               actorName,
+                               [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"amount"]];
+        NSLog(@"%@", [self.pastTrades objectAtIndex:indexPath.row]);
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Play Double   |  Settle  |   Keep"];
     }
     
     return cell;
 }
 
 - (void) tableView:(UITableView *) tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    TransactionDetailViewController *detailTransaction = [[TransactionDetailViewController alloc] initWithData:[self.pastTrades objectAtIndex:indexPath.row]];
-    [self.navigationController pushViewController:detailTransaction animated:YES];
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSString *actorName = [[[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"actor"] valueForKey:@"display_name"];
+    
+    //type 1 action you are charging someone
+    if([[[[[Venmo sharedInstance] session] user] displayName] isEqualToString:actorName]){
+        NSLog(@"their turn");
+        return;
+    }
+    
+    //type 2 you are being charged
+    else {
+        NSLog(@"your turn");
+        DoubleUpViewController *doubleUpController = [[DoubleUpViewController alloc] init];
+        [self.navigationController pushViewController:doubleUpController animated:YES];
+    }
+    
+    
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
