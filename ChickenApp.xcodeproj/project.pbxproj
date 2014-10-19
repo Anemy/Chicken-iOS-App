@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8928CB0B19F32F0400244114 /* ChickenAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8928CB0A19F32F0400244114 /* ChickenAPIClient.m */; };
+		8928CB0E19F343FF00244114 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8928CB0D19F343FF00244114 /* FriendsViewController.m */; };
+		8928CB1119F3457100244114 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8928CB0F19F3457100244114 /* Main.storyboard */; };
 		97B267E362A3F7FD06FC9577 /* libPods-ChickenApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 019953114E33EB0FA8E2858E /* libPods-ChickenApp.a */; };
 		ACDD078619F234F900D6B499 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD078519F234F900D6B499 /* main.m */; };
 		ACDD078919F234F900D6B499 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD078819F234F900D6B499 /* AppDelegate.m */; };
@@ -34,6 +36,9 @@
 		624A86491AF7C637EE41C5A1 /* Pods-ChickenApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChickenApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChickenApp/Pods-ChickenApp.release.xcconfig"; sourceTree = "<group>"; };
 		8928CB0919F32F0400244114 /* ChickenAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChickenAPIClient.h; sourceTree = "<group>"; };
 		8928CB0A19F32F0400244114 /* ChickenAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChickenAPIClient.m; sourceTree = "<group>"; };
+		8928CB0C19F343FF00244114 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		8928CB0D19F343FF00244114 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		8928CB1019F3457100244114 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ACDD078019F234F900D6B499 /* ChickenApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChickenApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACDD078419F234F900D6B499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACDD078519F234F900D6B499 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -106,8 +111,11 @@
 			children = (
 				ACDD078719F234F900D6B499 /* AppDelegate.h */,
 				ACDD078819F234F900D6B499 /* AppDelegate.m */,
+				8928CB0F19F3457100244114 /* Main.storyboard */,
 				ACDD078A19F234F900D6B499 /* ViewController.h */,
 				ACDD078B19F234F900D6B499 /* ViewController.m */,
+				8928CB0C19F343FF00244114 /* FriendsViewController.h */,
+				8928CB0D19F343FF00244114 /* FriendsViewController.m */,
 				ACDD079019F234F900D6B499 /* Images.xcassets */,
 				ACDD079219F234F900D6B499 /* LaunchScreen.xib */,
 				ACDD078319F234F900D6B499 /* Supporting Files */,
@@ -237,6 +245,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8928CB1119F3457100244114 /* Main.storyboard in Resources */,
 				ACDD079419F234F900D6B499 /* LaunchScreen.xib in Resources */,
 				ACDD079119F234F900D6B499 /* Images.xcassets in Resources */,
 			);
@@ -291,6 +300,7 @@
 			files = (
 				ACDD07B719F27B5800D6B499 /* TransactionsTableViewController.m in Sources */,
 				ACDD07BA19F2EDF400D6B499 /* TransactionDetailViewController.m in Sources */,
+				8928CB0E19F343FF00244114 /* FriendsViewController.m in Sources */,
 				ACDD078C19F234F900D6B499 /* ViewController.m in Sources */,
 				ACDD078919F234F900D6B499 /* AppDelegate.m in Sources */,
 				ACDD078619F234F900D6B499 /* main.m in Sources */,
@@ -317,6 +327,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8928CB0F19F3457100244114 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8928CB1019F3457100244114 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		ACDD079219F234F900D6B499 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -114,7 +114,6 @@ UIActivityIndicatorView *indicator;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
 
-    //cell.textLabel.text = @"asd";
     cell.textLabel.text = [NSString stringWithFormat:@"Status: %@",[[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"status"]];
     //check if data is there
     if([[[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"target"] valueForKey:@"user"] != nil) {
