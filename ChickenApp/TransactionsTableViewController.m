@@ -96,13 +96,25 @@ int currentCellFill = 0;
                 if(allowAdd == 0)
                     continue;
                 
+                NSString *transactionNote = [transaction valueForKey:@"note"];
+                
                 if([[transaction valueForKey:@"status"] isEqualToString:@"pending"]
-                   && [[transaction valueForKey:@"note"] isEqualToString:@"Chicken"]){
+                   && [transactionNote rangeOfString:@"Chicken"].location != NSNotFound){
                     //increase the amount of cells to be displayed if allowed
                     [self.pastTrades addObject:transaction];
+                    [disallowedUsers addObject:targetUser];
+                }
+                else if([[transaction valueForKey:@"status"] isEqualToString:@"pending"]
+                        && [transactionNote rangeOfString:@"Settle"].location != NSNotFound){
+                    //increase the amount of cells to be displayed if allowed
+                    [disallowedUsers addObject:targetUser];
+                }
+                else if([[transaction valueForKey:@"status"] isEqualToString:@"pending"]
+                        && [transactionNote rangeOfString:@"Keep"].location != NSNotFound){
+                    //increase the amount of cells to be displayed if allowed
+                    [disallowedUsers addObject:targetUser];
                 }
                 
-                [disallowedUsers addObject:targetUser];
             }
         }
         

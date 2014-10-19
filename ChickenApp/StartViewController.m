@@ -111,7 +111,8 @@
 {
     NSLog(@"PLAYING CHICKING WITH AMOUNT NUMBER %@", self.amountNumber);
     NSString *userRequested = [self.friend valueForKey:@"id"];//phone number of mason requested / payed
-    NSString *theNote = @"Chicken";
+    NSDate *date = [NSDate date];
+    NSString *theNote = [NSString stringWithFormat:@"Chicken %f", [date timeIntervalSince1970]];
     float amountToPay = [self.amountNumber floatValue] * 100.0;
     
     void(^handlerTwo)(VENTransaction *, BOOL, NSError *) = ^(VENTransaction *transaction, BOOL success, NSError *error) {

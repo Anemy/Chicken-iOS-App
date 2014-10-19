@@ -125,7 +125,8 @@
 - (void)doubleUp
 {
     NSString *userRequested = [self.friend valueForKey:@"id"];
-    NSString *theNote = @"Chicken";
+    NSDate *date = [NSDate date];
+    NSString *theNote = [NSString stringWithFormat:@"Chicken %f", [date timeIntervalSince1970]];
     float amountToPay = [self.pastAmount floatValue] * 100.0;
     
     void(^handlerTwo)(VENTransaction *, BOOL, NSError *) = ^(VENTransaction *transaction, BOOL success, NSError *error) {
@@ -161,7 +162,8 @@
 - (void) settle {
     //send them half the money they sent you. We're trying to break even here!
     NSString *userRequested = [self.friend valueForKey:@"id"];
-    NSString *theNote = @"Settle";
+    NSDate *date = [NSDate date];
+    NSString *theNote = [NSString stringWithFormat:@"Settle %f", [date timeIntervalSince1970]];
     float amountToPay = [self.pastAmount floatValue] * 100.0;
     
     void(^handlerTwo)(VENTransaction *, BOOL, NSError *) = ^(VENTransaction *transaction, BOOL success, NSError *error) {
@@ -182,7 +184,8 @@
 - (void) keep {
     //send them half the money they sent you. We're trying to break even here!
     NSString *userRequested = [self.friend valueForKey:@"id"];
-    NSString *theNote = @"Keep";
+    NSDate *date = [NSDate date];
+    NSString *theNote = [NSString stringWithFormat:@"Keep %f", [date timeIntervalSince1970]];
     float amountToPay = 1.0;
     
     void(^handlerTwo)(VENTransaction *, BOOL, NSError *) = ^(VENTransaction *transaction, BOOL success, NSError *error) {
