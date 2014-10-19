@@ -11,6 +11,8 @@
 #import "UIFont+FlatUI.h"
 #import "UIBarButtonItem+FlatUI.h"
 #import "UIColor+FlatUI.h"
+#import "ChickenAPIClient.h"
+#import <Venmo-iOS-SDK/Venmo.h>
 
 @interface FriendsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -29,15 +31,10 @@
     [self.view addSubview:self.tableView];
     
     
-    
     [UIBarButtonItem configureFlatButtonsWithColor:[UIColor peterRiverColor]
                                   highlightedColor:[UIColor belizeHoleColor]
                                       cornerRadius:3
                                    whenContainedIn:[UINavigationBar class], nil];
-    
-//    NSDictionary *attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-//    [[UIBarButtonItem appearance] setTitleTextAttributes:attrs
-//                                                forState:UIControlStateNormal];
     
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
@@ -49,9 +46,15 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont boldFlatFontOfSize:18],
                                                                     NSForegroundColorAttributeName: [UIColor whiteColor]};
+
+    NSString *url = [NSString stringWithFormat:@"users/%@/friends", [[[[Venmo sharedInstance] session] user] externalId]];
+    NSDictionary *parameters = @{@"access_token": [[Venmo sharedInstance] session].accessToken};
+    [[ChickenAPIClient sharedClient] GET:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"FRIENDS %@", responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error: %@", error);
+    }];
     
-    
-    // Do any additional setup after loading the view.
     
 }
 

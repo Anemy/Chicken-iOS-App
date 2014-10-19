@@ -56,20 +56,20 @@
     newButton.frame = CGRectMake(newButton.frame.origin.x, newButton.frame.origin.y - 50.0f, newButton.frame.size.width, newButton.frame.size.height);
     [self.view addSubview:newButton];
     
-//    [[Venmo sharedInstance] setDefaultTransactionMethod:VENTransactionMethodAPI];
-//    
-//    NSLog(@"In view loading.");
-//    
-//    [[Venmo sharedInstance] requestPermissions:@[VENPermissionMakePayments, VENPermissionAccessProfile]
-//    withCompletionHandler:^(BOOL success, NSError *error) {
-//        if (success) {
-//            //VENUser *user = [[Venmo sharedInstance] session].user;
-//            NSLog(@"Hey it loaded your access token!? %@", [[Venmo sharedInstance] session].accessToken);
-//        }
-//        else {
-//            NSLog(@"NO :( WORK");
-//        }
-//    }];
+    [[Venmo sharedInstance] setDefaultTransactionMethod:VENTransactionMethodAPI];
+    
+    NSLog(@"In view loading.");
+    
+    [[Venmo sharedInstance] requestPermissions:@[VENPermissionMakePayments, VENPermissionAccessProfile, VENPermissionAccessFriends]
+    withCompletionHandler:^(BOOL success, NSError *error) {
+        if (success) {
+            
+            NSLog(@"Hey it loaded your access token!? %@", [[Venmo sharedInstance] session].accessToken);
+        }
+        else {
+            NSLog(@"NO :( WORK");
+        }
+    }];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
