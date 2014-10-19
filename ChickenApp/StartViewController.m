@@ -41,9 +41,9 @@
     self.view.backgroundColor = [UIColor peterRiverColor];
     self.amountNumber = [NSNumber numberWithInt:1];
     
-    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(50.0, 50.0, 270.0, 10.0)];
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(80.0, 50.0, 270.0, 10.0)];
     slider.center = self.view.center;
-    slider.frame = CGRectMake(slider.frame.origin.x, slider.frame.origin.y - 40.0, slider.frame.size.width, slider.frame.size.height);
+    slider.frame = CGRectMake(slider.frame.origin.x, slider.frame.origin.y - 30.0, slider.frame.size.width, slider.frame.size.height);
     
     self.numbers = @[@(1), @(2), @(3), @(4), @(5), @(6), @(7), @(8), @(9), @(10)];
     NSInteger numberOfSteps = ((float)[self.numbers count] - 1);
@@ -63,7 +63,7 @@
     
     self.dollarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 250.0)];
     self.dollarLabel.center = self.view.center;
-    self.dollarLabel.frame = CGRectMake(self.dollarLabel.frame.origin.x, self.dollarLabel.frame.origin.y - 200.0, self.dollarLabel.frame.size.width, self.dollarLabel.frame.size.height);
+    self.dollarLabel.frame = CGRectMake(self.dollarLabel.frame.origin.x, self.dollarLabel.frame.origin.y - 170.0, self.dollarLabel.frame.size.width, self.dollarLabel.frame.size.height);
     self.dollarLabel.text = @"$1";
     self.dollarLabel.font = [UIFont boldFlatFontOfSize:120.0];
     self.dollarLabel.textAlignment = NSTextAlignmentCenter;
@@ -71,7 +71,7 @@
     
     [self.view addSubview:self.dollarLabel];
     
-    self.descLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, slider.frame.origin.y + 40.0, self.view.frame.size.width-20.0, 100)];
+    self.descLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, slider.frame.origin.y + 20.0, self.view.frame.size.width-20.0, 150)];
     self.descLabel.numberOfLines = 0;
     self.descLabel.text = [NSString stringWithFormat:@"Start a game by sending $%@ to %@", self.amountNumber, [self.friend objectForKey:@"display_name"]];
     self.descLabel.font = [UIFont boldFlatFontOfSize:32.0f];
@@ -92,7 +92,7 @@
     [self.playButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     [self.playButton setTitle:@"Play chicken!" forState:UIControlStateNormal];
     self.playButton.center = self.view.center;
-    self.playButton.frame = CGRectMake(self.playButton.frame.origin.x, CGRectGetMaxY(self.descLabel.frame) + 50.0f, self.playButton.frame.size.width, self.playButton.frame.size.height);
+    self.playButton.frame = CGRectMake(self.playButton.frame.origin.x, CGRectGetMaxY(self.descLabel.frame) + 10.0f, self.playButton.frame.size.width, self.playButton.frame.size.height);
     [self.view addSubview:self.playButton];
     
     

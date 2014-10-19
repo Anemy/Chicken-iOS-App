@@ -59,7 +59,7 @@
                                                                     NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     
-    UILabel *chickenLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 100.0f, self.view.frame.size.width, 200.0f)];
+    UILabel *chickenLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 50.0f, self.view.frame.size.width, 200.0f)];
     chickenLabel.text = @"Are you chicken?";
     chickenLabel.font = [UIFont boldFlatFontOfSize:32.0f];
     chickenLabel.textColor = [UIColor whiteColor];
@@ -113,6 +113,15 @@
     [button3 setTitle:@"KEEP" forState:UIControlStateNormal];
     button3.frame = CGRectMake(button2.frame.origin.x, button2.frame.origin.y + 70.0, button2.frame.size.width, button2.frame.size.height);
     [self.view addSubview:button3];
+    
+    UILabel *wagerLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, CGRectGetMaxY(button3.frame)-25.0, self.view.frame.size.width-40, 200.0f)];
+    wagerLabel.text = [NSString stringWithFormat:@"Currently wagering $%@ against %@", self.pastAmount, [self.friend objectForKey:@"display_name"]];
+    wagerLabel.font = [UIFont flatFontOfSize:18.0f];
+    wagerLabel.textColor = [UIColor whiteColor];
+    wagerLabel.numberOfLines = 0;
+    wagerLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:wagerLabel];
+    
     
     
 }

@@ -192,7 +192,7 @@ int currentCellFill = 0;
     //type 1 action you are charging someone
     if([[[[[Venmo sharedInstance] session] user] displayName] isEqualToString:actorName]){
         cell.textLabel.text = [NSString stringWithFormat:@"%@",targetName];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Owes you $%@", [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"amount"]];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Owes you $%@!", [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"amount"]];
         
         NSURL *url = [NSURL URLWithString:[[[[self.pastTrades objectAtIndex:indexPath.row] objectForKey:@"target"] objectForKey:@"user"] objectForKey:@"profile_picture_url"]];
         [cell.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Chicken.png"]];
@@ -204,11 +204,9 @@ int currentCellFill = 0;
         NSURL *url = [NSURL URLWithString:[[[self.pastTrades objectAtIndex:indexPath.row] objectForKey:@"actor"] objectForKey:@"profile_picture_url"]];
         [cell.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Chicken.png"]];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ is charging you $%@",
-                               actorName,
-                               [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"amount"]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", actorName];
         //NSLog(@"%@", [self.pastTrades objectAtIndex:indexPath.row]);
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Double up, settle, or keep!"];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Charged you $%@!", [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"amount"]];
     }
     
     return cell;
