@@ -9,6 +9,10 @@
 #import "TransactionsTableViewController.h"
 #import "ChickenAPIClient.h"
 #import "DoubleUpViewController.h"
+#import "UIBarButtonItem+FlatUI.h"
+#import "UIColor+FlatUI.h"
+#import "UIFont+FlatUI.h"
+#import "UINavigationBar+FlatUI.h"
 
 @interface TransactionsTableViewController ()
 @property (nonatomic, strong) UITableView *tableView;
@@ -23,9 +27,26 @@ int currentCellFill = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    
+    self.title = @"Current Games";
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor peterRiverColor]
+                                  highlightedColor:[UIColor belizeHoleColor]
+                                      cornerRadius:3
+                                   whenContainedIn:[UINavigationBar class], nil];
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor],
+       NSFontAttributeName:[UIFont flatFontOfSize:15.0]
+       } forState:UIControlStateNormal];
+    
+    [self.navigationController.navigationBar configureFlatNavigationBarWithColor:[UIColor midnightBlueColor]];
+    
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont boldFlatFontOfSize:18],
+                                                                    NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     self.pastTrades = [NSMutableArray array];
     
@@ -34,17 +55,6 @@ int currentCellFill = 0;
     self.tableView.delegate = self;
      [self.view addSubview:self.tableView];
     
-    //create a loading icon
-//    indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//    indicator.frame = CGRectMake(100.0, 100.0, 40.0, 40.0);
-//    indicator.center = self.view.center;
-//    [self.view addSubview:indicator];
-//    [indicator bringSubviewToFront:self.view];
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
-//    [indicator startAnimating];
-
-    //Load all of the user's transactions
-    //get their past transactions
     
     NSDictionary *parameters = @{@"access_token": [[Venmo sharedInstance] session].accessToken};
     [[ChickenAPIClient sharedClient] GET:@"payments" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -71,6 +81,11 @@ int currentCellFill = 0;
         NSLog(@"request failed with error: %@", error);
     }];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -122,11 +137,12 @@ int currentCellFill = 0;
     
     //type 2 you are being charged
     else {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.text = [NSString stringWithFormat:@"%@ is charging you $%@",
                                actorName,
                                [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"amount"]];
         NSLog(@"%@", [self.pastTrades objectAtIndex:indexPath.row]);
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Play Double   |  Settle  |   Keep"];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Double up, settle, or keep!"];
     }
     
     return cell;

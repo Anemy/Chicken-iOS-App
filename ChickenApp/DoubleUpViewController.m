@@ -23,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Chicken";
+    
     self.view.backgroundColor = [UIColor peterRiverColor];
     
     [UIBarButtonItem configureFlatButtonsWithColor:[UIColor peterRiverColor]
@@ -42,6 +44,15 @@
                                                                     NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     
+    UILabel *chickenLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 100.0f, self.view.frame.size.width, 200.0f)];
+    chickenLabel.text = @"Are you chicken?";
+    chickenLabel.font = [UIFont boldFlatFontOfSize:32.0f];
+    chickenLabel.textColor = [UIColor whiteColor];
+    chickenLabel.numberOfLines = 0;
+    chickenLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:chickenLabel];
+    
+    
     FUIButton *button = [[FUIButton alloc] initWithFrame:CGRectMake(50.0, 140.0, 240.0, 40.0)];
     [button addTarget:self
                action:@selector(doubleUp)
@@ -55,8 +66,39 @@
     [button setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     [button setTitle:@"DOUBLE UP" forState:UIControlStateNormal];
     button.center = self.view.center;
-    button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y + 80.0f, button.frame.size.width, button.frame.size.height);
+    button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y - 70.0f, button.frame.size.width, button.frame.size.height);
     [self.view addSubview:button];
+    
+    FUIButton *button2 = [[FUIButton alloc] initWithFrame:CGRectMake(50.0, 140.0, 240.0, 40.0)];
+    [button2 addTarget:self
+               action:@selector(doubleUp)
+     forControlEvents:UIControlEventTouchUpInside];
+    button2.buttonColor = [UIColor sunflowerColor];
+    button2.shadowColor = [UIColor tangerineColor];
+    button2.shadowHeight = 3.0f;
+    button2.cornerRadius = 6.0f;
+    button2.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+    [button2 setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
+    [button2 setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
+    [button2 setTitle:@"SETTLE" forState:UIControlStateNormal];
+    button2.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y + 70.0, button.frame.size.width, button.frame.size.height);
+    [self.view addSubview:button2];
+    
+    FUIButton *button3 = [[FUIButton alloc] initWithFrame:CGRectMake(50.0, 140.0, 240.0, 40.0)];
+    [button3 addTarget:self
+                action:@selector(doubleUp)
+      forControlEvents:UIControlEventTouchUpInside];
+    button3.buttonColor = [UIColor turquoiseColor];
+    button3.shadowColor = [UIColor greenSeaColor];
+    button3.shadowHeight = 3.0f;
+    button3.cornerRadius = 6.0f;
+    button3.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+    [button3 setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
+    [button3 setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
+    [button3 setTitle:@"KEEP" forState:UIControlStateNormal];
+    button3.frame = CGRectMake(button2.frame.origin.x, button2.frame.origin.y + 70.0, button2.frame.size.width, button2.frame.size.height);
+    [self.view addSubview:button3];
+    
     
 }
 
