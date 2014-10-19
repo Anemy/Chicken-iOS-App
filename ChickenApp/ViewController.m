@@ -12,6 +12,7 @@
 #import "FUIButton.h"
 #import "UIColor+FlatUI.h"
 #import "UIFont+FlatUI.h"
+#import "FriendsViewController.h"
 
 @interface ViewController ()
 
@@ -41,7 +42,7 @@
     
     FUIButton *newButton = [[FUIButton alloc] initWithFrame:CGRectMake(50.0, 140.0, 240.0, 40.0)];
     [newButton addTarget:self
-               action:@selector(showTransactions)
+               action:@selector(showFriends)
      forControlEvents:UIControlEventTouchUpInside];
     newButton.buttonColor = [UIColor emerlandColor];
     newButton.shadowColor = [UIColor nephritisColor];
@@ -55,20 +56,20 @@
     newButton.frame = CGRectMake(newButton.frame.origin.x, newButton.frame.origin.y - 50.0f, newButton.frame.size.width, newButton.frame.size.height);
     [self.view addSubview:newButton];
     
-    [[Venmo sharedInstance] setDefaultTransactionMethod:VENTransactionMethodAPI];
-    
-    NSLog(@"In view loading.");
-    
-    [[Venmo sharedInstance] requestPermissions:@[VENPermissionMakePayments, VENPermissionAccessProfile]
-    withCompletionHandler:^(BOOL success, NSError *error) {
-        if (success) {
-            //VENUser *user = [[Venmo sharedInstance] session].user;
-            NSLog(@"Hey it loaded your access token!? %@", [[Venmo sharedInstance] session].accessToken);
-        }
-        else {
-            NSLog(@"NO :( WORK");
-        }
-    }];
+//    [[Venmo sharedInstance] setDefaultTransactionMethod:VENTransactionMethodAPI];
+//    
+//    NSLog(@"In view loading.");
+//    
+//    [[Venmo sharedInstance] requestPermissions:@[VENPermissionMakePayments, VENPermissionAccessProfile]
+//    withCompletionHandler:^(BOOL success, NSError *error) {
+//        if (success) {
+//            //VENUser *user = [[Venmo sharedInstance] session].user;
+//            NSLog(@"Hey it loaded your access token!? %@", [[Venmo sharedInstance] session].accessToken);
+//        }
+//        else {
+//            NSLog(@"NO :( WORK");
+//        }
+//    }];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -79,8 +80,13 @@
 
 //user hits show transaction table
 - (void)showTransactions {
-    TransactionsTableViewController *transactions = [TransactionsTableViewController alloc];
+    TransactionsTableViewController *transactions = [[TransactionsTableViewController alloc] init];
     [self.navigationController pushViewController:transactions animated:YES];
+}
+
+- (void)showFriends {
+    FriendsViewController *friendsViewController = [[FriendsViewController alloc] init];
+    [self.navigationController pushViewController:friendsViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

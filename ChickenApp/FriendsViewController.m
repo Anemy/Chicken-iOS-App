@@ -8,6 +8,8 @@
 
 #import "FriendsViewController.h"
 #import "UINavigationBar+FlatUI.h"
+#import "UIFont+FlatUI.h"
+#import "UIBarButtonItem+FlatUI.h"
 #import "UIColor+FlatUI.h"
 
 @interface FriendsViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -19,12 +21,44 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Friends";
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [self.view addSubview:self.tableView];
+    
+    
+    
+    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor peterRiverColor]
+                                  highlightedColor:[UIColor belizeHoleColor]
+                                      cornerRadius:3
+                                   whenContainedIn:[UINavigationBar class], nil];
+    
+//    NSDictionary *attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+//    [[UIBarButtonItem appearance] setTitleTextAttributes:attrs
+//                                                forState:UIControlStateNormal];
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor],
+       NSFontAttributeName:[UIFont flatFontOfSize:15.0]
+       } forState:UIControlStateNormal];
     
     [self.navigationController.navigationBar configureFlatNavigationBarWithColor:[UIColor midnightBlueColor]];
+    
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont boldFlatFontOfSize:18],
+                                                                    NSForegroundColorAttributeName: [UIColor whiteColor]};
+    
+    
     // Do any additional setup after loading the view.
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,7 +77,6 @@
     return 4;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"here\n");
     static NSString *CellIdentifier = @"cell";
@@ -53,6 +86,8 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+    
+    cell.textLabel.text = @"test";
     
     return cell;
 }
