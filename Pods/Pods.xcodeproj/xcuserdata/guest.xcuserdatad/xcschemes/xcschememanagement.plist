@@ -14,12 +14,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-ChickenApp-FlatUIKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-ChickenApp-SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-ChickenApp-SSKeychain.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ChickenApp-SVPullToRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,77 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>08E21A2108B934475FCDDB37</key>
+		<key>1364D3FF117A28C598349246</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>228272309C22EDF09D01B362</key>
+		<key>3FC1E46FCD6EE5C424A364D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>275930871997F40889A4B9CB</key>
+		<key>6354BF27A1115CC5DC7E05D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>437A7D61B76D864C1098EC50</key>
+		<key>6AFAECF99B3DD20B2821C149</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4F88838AD04940D9A39549EC</key>
+		<key>813FF020BE45B5F98CFF6E43</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>50F8184187B17FAF469ED870</key>
+		<key>9A54F9E9C49DDA42BBA0917B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B60311E5ED1D4AFE98A5107</key>
+		<key>C18540EAC160518245E5EDF8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7642677AA4F750776DD78234</key>
+		<key>F273FE8B7E091C77F9F03F57</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B68148E7DE9CA7A2D7C06F3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A344E3F9F5C4019DB65F0843</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D53C9346153992047791ACAF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D7833DE132568EE4B2036C6A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D7A4F8F8C6D1C2C3E254A6AC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F20ED1550BCB2934A8BB87F1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F36147D89F4FAE6E673C6AD1</key>
+		<key>F385909DAFCC6FFC96D77F77</key>
 		<dict>
 			<key>primary</key>
 			<true/>

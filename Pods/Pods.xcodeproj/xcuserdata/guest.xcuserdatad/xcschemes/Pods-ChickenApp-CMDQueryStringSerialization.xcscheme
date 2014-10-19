@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A344E3F9F5C4019DB65F0843"
+               BlueprintIdentifier = "9A54F9E9C49DDA42BBA0917B"
                BuildableName = "libPods-ChickenApp-CMDQueryStringSerialization.a"
                BlueprintName = "Pods-ChickenApp-CMDQueryStringSerialization"
                ReferencedContainer = "container:Pods.xcodeproj">

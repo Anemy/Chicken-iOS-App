@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "50F8184187B17FAF469ED870"
+               BlueprintIdentifier = "813FF020BE45B5F98CFF6E43"
                BuildableName = "libPods-ChickenApp-VENCore.a"
                BlueprintName = "Pods-ChickenApp-VENCore"
                ReferencedContainer = "container:Pods.xcodeproj">
