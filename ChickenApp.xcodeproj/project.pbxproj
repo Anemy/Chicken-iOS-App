@@ -19,6 +19,8 @@
 		ACDD07A019F234F900D6B499 /* ChickenAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD079F19F234F900D6B499 /* ChickenAppTests.m */; };
 		ACDD07B719F27B5800D6B499 /* TransactionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD07B619F27B5800D6B499 /* TransactionsTableViewController.m */; };
 		ACDD07BA19F2EDF400D6B499 /* TransactionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDD07B919F2EDF400D6B499 /* TransactionDetailViewController.m */; };
+		ACDD07C019F35EED00D6B499 /* Chicken.png in Resources */ = {isa = PBXBuildFile; fileRef = ACDD07BE19F35EED00D6B499 /* Chicken.png */; };
+		ACDD07C119F35EED00D6B499 /* ChikenTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = ACDD07BF19F35EED00D6B499 /* ChikenTitle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		ACDD07B619F27B5800D6B499 /* TransactionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionsTableViewController.m; sourceTree = "<group>"; };
 		ACDD07B819F2EDF400D6B499 /* TransactionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionDetailViewController.h; sourceTree = "<group>"; };
 		ACDD07B919F2EDF400D6B499 /* TransactionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionDetailViewController.m; sourceTree = "<group>"; };
+		ACDD07BE19F35EED00D6B499 /* Chicken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chicken.png; sourceTree = "<group>"; };
+		ACDD07BF19F35EED00D6B499 /* ChikenTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChikenTitle.png; sourceTree = "<group>"; };
 		EEF57181964D1AFDD9347851 /* Pods-ChickenApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChickenApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChickenApp/Pods-ChickenApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +113,7 @@
 		ACDD078219F234F900D6B499 /* ChickenApp */ = {
 			isa = PBXGroup;
 			children = (
+				ACDD07BD19F35EED00D6B499 /* Chicken-pics */,
 				ACDD078719F234F900D6B499 /* AppDelegate.h */,
 				ACDD078819F234F900D6B499 /* AppDelegate.m */,
 				8928CB0F19F3457100244114 /* Main.storyboard */,
@@ -153,6 +158,16 @@
 				ACDD079E19F234F900D6B499 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ACDD07BD19F35EED00D6B499 /* Chicken-pics */ = {
+			isa = PBXGroup;
+			children = (
+				ACDD07BE19F35EED00D6B499 /* Chicken.png */,
+				ACDD07BF19F35EED00D6B499 /* ChikenTitle.png */,
+			);
+			name = "Chicken-pics";
+			path = "Chicken pics";
 			sourceTree = "<group>";
 		};
 		D2D9954E4214653F2D00BBEF /* Frameworks */ = {
@@ -246,8 +261,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8928CB1119F3457100244114 /* Main.storyboard in Resources */,
+				ACDD07C119F35EED00D6B499 /* ChikenTitle.png in Resources */,
 				ACDD079419F234F900D6B499 /* LaunchScreen.xib in Resources */,
 				ACDD079119F234F900D6B499 /* Images.xcassets in Resources */,
+				ACDD07C019F35EED00D6B499 /* Chicken.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

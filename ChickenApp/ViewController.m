@@ -25,6 +25,12 @@
     self.view.backgroundColor = [UIColor peterRiverColor];
     
     
+    UIImageView *logoImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Chicken.png"]];
+    logoImage.frame = CGRectMake(0, 0, 200, 200);
+    logoImage.center = self.view.center;
+    logoImage.frame = CGRectMake(logoImage.frame.origin.x, logoImage.frame.origin.y - 100, 200, 200);
+    [self.view addSubview:logoImage];
+    
     FUIButton *button = [[FUIButton alloc] initWithFrame:CGRectMake(50.0, 140.0, 240.0, 40.0)];
     [button addTarget:self
                action:@selector(showTransactions)
@@ -38,6 +44,7 @@
     [button setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     [button setTitle:@"Current Games" forState:UIControlStateNormal];
     button.center = self.view.center;
+    button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y + 80.0f, button.frame.size.width, button.frame.size.height);
     [self.view addSubview:button];
     
     FUIButton *newButton = [[FUIButton alloc] initWithFrame:CGRectMake(50.0, 140.0, 240.0, 40.0)];
@@ -53,8 +60,10 @@
     [newButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     [newButton setTitle:@"Play Chicken!" forState:UIControlStateNormal];
     newButton.center = self.view.center;
-    newButton.frame = CGRectMake(newButton.frame.origin.x, newButton.frame.origin.y - 50.0f, newButton.frame.size.width, newButton.frame.size.height);
+    newButton.frame = CGRectMake(newButton.frame.origin.x, newButton.frame.origin.y + 30.0f, newButton.frame.size.width, newButton.frame.size.height);
     [self.view addSubview:newButton];
+    
+
     
     [[Venmo sharedInstance] setDefaultTransactionMethod:VENTransactionMethodAPI];
     
