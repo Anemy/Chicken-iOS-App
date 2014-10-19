@@ -11,6 +11,7 @@
 #import "UIColor+FlatUI.h"
 #import "UIFont+FlatUI.h"
 #import "FUIButton.h"
+#import <Venmo-iOS-SDK/Venmo.h>
 
 @interface StartViewController ()
 @property (nonatomic, strong) NSDictionary *friend;
@@ -99,7 +100,38 @@
 - (void)playChicken
 {
     NSLog(@"PLAYING CHICKING WITH AMOUNT NUMBER %@", self.amountNumber);
+    NSString *userRequested = [self.friend valueForKey:@"id"];//phone number of mason requested / payed
+    NSString *theNote = @"Chicken";
+    float amountToPay = [self.amountNumber floatValue] * 100.0;
     
+    void(^handlerTwo)(VENTransaction *, BOOL, NSError *) = ^(VENTransaction *transaction, BOOL success, NSError *error) {
+        if (error) {
+            NSLog(@"Pay %@ failure.", userRequested);
+        }
+        else {
+            NSLog(@"Pay %@ success!", userRequested);
+            
+            //now make the request (you don't want to request without paying!!
+            void(^handler)(VENTransaction *, BOOL, NSError *) = ^(VENTransaction *transaction, BOOL success, NSError *error) {
+                if (error) {
+                    NSLog(@"Ask %@ for %f failure.", userRequested,amountToPay);
+                }
+                else {
+                    NSLog(@"Ask %@ for %f success!! :))))", userRequested,amountToPay);
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            };
+            
+            [[Venmo sharedInstance] sendRequestTo:userRequested
+                                           amount:amountToPay
+                                             note:theNote
+                                completionHandler:handler];
+        }
+    };
+    [[Venmo sharedInstance] sendPaymentTo:userRequested
+                                   amount:amountToPay
+                                     note:theNote
+                        completionHandler:handlerTwo];
 }
 
 - (void)didReceiveMemoryWarning {

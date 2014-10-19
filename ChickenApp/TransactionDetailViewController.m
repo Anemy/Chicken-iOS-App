@@ -100,7 +100,7 @@
                     NSLog(@"Ask %@ for %f failure.", userRequested,amountToPay);
                 }
                 else {
-                    NSLog(@"Ask %@ for %f sucees!! :))))", userRequested);
+                    NSLog(@"Ask %@ for %f sucees!! :))))", userRequested, amountToPay);
                 }
             };
             

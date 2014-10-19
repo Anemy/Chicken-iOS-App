@@ -13,12 +13,27 @@
 #import "UIColor+FlatUI.h"
 #import "UIBarButtonItem+FlatUI.h"
 #import "UINavigationBar+FlatUI.h"
+#import <Venmo-iOS-SDK/Venmo.h>
 
 @interface DoubleUpViewController ()
-
+@property (nonatomic, strong) NSDictionary *friend;
+@property (nonatomic, strong) NSNumber *pastAmount;
+@property (nonatomic, strong) NSString *transactionID;
 @end
 
 @implementation DoubleUpViewController
+
+- (id)initWithTransaction:(NSDictionary *)transaction
+{
+    if (self = [super init]) {
+        self.friend = [transaction valueForKey:@"actor"];
+        self.pastAmount = [transaction valueForKey:@"amount"];
+        self.transactionID = [transaction valueForKey:@"id"];
+    }
+    
+    return self;
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -71,7 +86,7 @@
     
     FUIButton *button2 = [[FUIButton alloc] initWithFrame:CGRectMake(50.0, 140.0, 240.0, 40.0)];
     [button2 addTarget:self
-               action:@selector(doubleUp)
+               action:@selector(settle)
      forControlEvents:UIControlEventTouchUpInside];
     button2.buttonColor = [UIColor sunflowerColor];
     button2.shadowColor = [UIColor tangerineColor];
@@ -86,7 +101,7 @@
     
     FUIButton *button3 = [[FUIButton alloc] initWithFrame:CGRectMake(50.0, 140.0, 240.0, 40.0)];
     [button3 addTarget:self
-                action:@selector(doubleUp)
+                action:@selector(keep)
       forControlEvents:UIControlEventTouchUpInside];
     button3.buttonColor = [UIColor turquoiseColor];
     button3.shadowColor = [UIColor greenSeaColor];
@@ -109,7 +124,80 @@
 
 - (void)doubleUp
 {
+    NSString *userRequested = [self.friend valueForKey:@"id"];
+    NSString *theNote = @"Chicken";
+    float amountToPay = [self.pastAmount floatValue] * 100.0;
     
+    void(^handlerTwo)(VENTransaction *, BOOL, NSError *) = ^(VENTransaction *transaction, BOOL success, NSError *error) {
+        if (error) {
+            NSLog(@"Pay %@ failure.", userRequested);
+        }
+        else {
+            NSLog(@"Pay %@ success!", userRequested);
+            
+            //now make the request (you don't want to request without paying!!
+            void(^handler)(VENTransaction *, BOOL, NSError *) = ^(VENTransaction *transaction, BOOL success, NSError *error) {
+                if (error) {
+                    NSLog(@"Ask %@ for %f failure.", userRequested,amountToPay);
+                }
+                else {
+                    NSLog(@"Ask %@ for %f success!! :))))", userRequested,amountToPay);
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            };
+            
+            [[Venmo sharedInstance] sendRequestTo:userRequested
+                                           amount:amountToPay*2
+                                             note:theNote
+                                completionHandler:handler];
+        }
+    };
+    [[Venmo sharedInstance] sendPaymentTo:userRequested
+                                   amount:amountToPay
+                                     note:theNote
+                        completionHandler:handlerTwo];
+}
+
+- (void) settle {
+    //send them half the money they sent you. We're trying to break even here!
+    NSString *userRequested = [self.friend valueForKey:@"id"];
+    NSString *theNote = @"Settled";
+    float amountToPay = [self.pastAmount floatValue] * 100.0;
+    
+    void(^handlerTwo)(VENTransaction *, BOOL, NSError *) = ^(VENTransaction *transaction, BOOL success, NSError *error) {
+        if (error) {
+            NSLog(@"Pay %@ failure.", userRequested);
+        }
+        else {
+            NSLog(@"Pay %@ success!", userRequested);
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    };
+    [[Venmo sharedInstance] sendPaymentTo:userRequested
+                                   amount:amountToPay/2
+                                     note:theNote
+                        completionHandler:handlerTwo];
+}
+
+- (void) keep {
+    //send them half the money they sent you. We're trying to break even here!
+    NSString *userRequested = [self.friend valueForKey:@"id"];
+    NSString *theNote = @"Keep";
+    float amountToPay = 1.0;
+    
+    void(^handlerTwo)(VENTransaction *, BOOL, NSError *) = ^(VENTransaction *transaction, BOOL success, NSError *error) {
+        if (error) {
+            NSLog(@"Pay %@ failure.", userRequested);
+        }
+        else {
+            NSLog(@"Pay %@ success!", userRequested);
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    };
+    [[Venmo sharedInstance] sendPaymentTo:userRequested
+                                   amount:amountToPay
+                                     note:theNote
+                        completionHandler:handlerTwo];
 }
 
 /*

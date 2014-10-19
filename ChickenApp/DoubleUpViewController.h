@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DoubleUpViewController : UIViewController
-
+- (id)initWithTransaction:(NSDictionary *)transaction;
 @end

@@ -74,6 +74,20 @@ int currentCellFill = 0;
                     //increase the amount of cells to be displayed
                     [self.pastTrades addObject:transaction];
                 }
+                
+                //PAST TRADES SETTLED
+                else if([[transaction valueForKey:@"status"] isEqualToString:@"pending"]
+                          && [[transaction valueForKey:@"note"] isEqualToString:@"Chicken"]){
+                    //increase the amount of cells to be displayed
+                    [self.pastTrades addObject:transaction];
+                }
+                
+                //PAST TRADES KEPT
+                else if([[transaction valueForKey:@"status"] isEqualToString:@"pending"]
+                          && [[transaction valueForKey:@"note"] isEqualToString:@"Chicken"]){
+                    //increase the amount of cells to be displayed
+                    [self.pastTrades addObject:transaction];
+                }
             }
         }
         
@@ -173,7 +187,8 @@ int currentCellFill = 0;
     //type 2 you are being charged
     else {
         NSLog(@"your turn");
-        DoubleUpViewController *doubleUpController = [[DoubleUpViewController alloc] init];
+        NSDictionary *transaction = [self.pastTrades objectAtIndex:indexPath.row];
+        DoubleUpViewController *doubleUpController = [[DoubleUpViewController alloc] initWithTransaction:transaction];
         [self.navigationController pushViewController:doubleUpController animated:YES];
     }
     
