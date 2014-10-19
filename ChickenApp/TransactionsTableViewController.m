@@ -97,20 +97,22 @@ int currentCellFill = 0;
                     continue;
                 
                 NSString *transactionNote = [transaction valueForKey:@"note"];
+                NSLog(@"NOTE: %@ from user %@ with status %@", transactionNote, targetUser, [transaction valueForKey:@"status"]);
                 
                 if([[transaction valueForKey:@"status"] isEqualToString:@"pending"]
-                   && [transactionNote rangeOfString:@"Chicken"].location != NSNotFound){
+                   && [transactionNote containsString:@"Chicken"]){
                     //increase the amount of cells to be displayed if allowed
                     [self.pastTrades addObject:transaction];
                     [disallowedUsers addObject:targetUser];
                 }
-                else if([[transaction valueForKey:@"status"] isEqualToString:@"pending"]
-                        && [transactionNote rangeOfString:@"Settle"].location != NSNotFound){
+                else if([[transaction valueForKey:@"status"] isEqualToString:@"settled"]
+                        && [transactionNote containsString:@"Settle"]){
                     //increase the amount of cells to be displayed if allowed
                     [disallowedUsers addObject:targetUser];
+                    NSLog(@"settle regist");
                 }
-                else if([[transaction valueForKey:@"status"] isEqualToString:@"pending"]
-                        && [transactionNote rangeOfString:@"Keep"].location != NSNotFound){
+                else if([[transaction valueForKey:@"status"] isEqualToString:@"settled"]
+                        && [transactionNote containsString:@"Keep"]){
                     //increase the amount of cells to be displayed if allowed
                     [disallowedUsers addObject:targetUser];
                 }
