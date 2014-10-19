@@ -13,6 +13,7 @@
 #import "UIColor+FlatUI.h"
 #import "UIFont+FlatUI.h"
 #import "UINavigationBar+FlatUI.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface TransactionsTableViewController ()
 @property (nonatomic, strong) UITableView *tableView;
@@ -129,14 +130,22 @@ int currentCellFill = 0;
           [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"action"]
           );
     
+
+    
     //type 1 action you are charging someone
     if([[[[[Venmo sharedInstance] session] user] displayName] isEqualToString:actorName]){
         cell.textLabel.text = [NSString stringWithFormat:@"%@",targetName];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"Owes you $%@", [[self.pastTrades objectAtIndex:indexPath.row] valueForKey:@"amount"]];
+        
+        NSURL *url = [NSURL URLWithString:[[[[self.pastTrades objectAtIndex:indexPath.row] objectForKey:@"target"] objectForKey:@"user"] objectForKey:@"profile_picture_url"]];
+        [cell.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Chicken.png"]];
+        
     }
     
     //type 2 you are being charged
     else {
+        NSURL *url = [NSURL URLWithString:[[[self.pastTrades objectAtIndex:indexPath.row] objectForKey:@"actor"] objectForKey:@"profile_picture_url"]];
+        [cell.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Chicken.png"]];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.text = [NSString stringWithFormat:@"%@ is charging you $%@",
                                actorName,
@@ -169,6 +178,11 @@ int currentCellFill = 0;
     }
     
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80.0f;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
