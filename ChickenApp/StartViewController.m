@@ -10,11 +10,15 @@
 #import "UISlider+FlatUI.h"
 #import "UIColor+FlatUI.h"
 #import "UIFont+FlatUI.h"
+#import "FUIButton.h"
 
 @interface StartViewController ()
 @property (nonatomic, strong) NSDictionary *friend;
 @property (nonatomic, strong) NSArray *numbers;
 @property (nonatomic, strong) UILabel *dollarLabel;
+@property (nonatomic, strong) FUIButton *playButton;
+@property (nonatomic, strong) NSNumber *amountNumber;
+
 @end
 
 @implementation StartViewController
@@ -33,6 +37,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor peterRiverColor];
+    self.amountNumber = [NSNumber numberWithInt:1];
     
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(50.0, 50.0, 270.0, 10.0)];
     slider.center = self.view.center;
@@ -64,6 +69,22 @@
     
     [self.view addSubview:self.dollarLabel];
     
+    self.playButton = [[FUIButton alloc] initWithFrame:CGRectMake(50.0, 140.0, 240.0, 40.0)];
+    [self.playButton addTarget:self
+                  action:@selector(playChicken)
+        forControlEvents:UIControlEventTouchUpInside];
+    self.playButton.buttonColor = [UIColor emerlandColor];
+    self.playButton.shadowColor = [UIColor nephritisColor];
+    self.playButton.shadowHeight = 3.0f;
+    self.playButton.cornerRadius = 6.0f;
+    self.playButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+    [self.playButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
+    [self.playButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
+    [self.playButton setTitle:@"Start!" forState:UIControlStateNormal];
+    self.playButton.center = self.view.center;
+    self.playButton.frame = CGRectMake(self.playButton.frame.origin.x, self.playButton.frame.origin.y + 100.0f, self.playButton.frame.size.width, self.playButton.frame.size.height);
+    [self.view addSubview:self.playButton];
+    
     
 }
 
@@ -71,10 +92,14 @@
     // round the slider position to the nearest index of the numbers array
     NSUInteger index = (NSUInteger)(sender.value + 0.5);
     [sender setValue:index animated:NO];
-    NSNumber *number = self.numbers[index]; // <-- This numeric value you want
-    self.dollarLabel.text = [NSString stringWithFormat:@"$%@", number];
-    NSLog(@"sliderIndex: %i", (int)index);
-    NSLog(@"number: %@", number);
+    self.amountNumber = self.numbers[index]; // <-- This numeric value you want
+    self.dollarLabel.text = [NSString stringWithFormat:@"$%@", self.amountNumber];
+}
+
+- (void)playChicken
+{
+    NSLog(@"PLAYING CHICKING WITH AMOUNT NUMBER %@", self.amountNumber);
+    
 }
 
 - (void)didReceiveMemoryWarning {
